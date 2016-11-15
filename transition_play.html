@@ -1,0 +1,118 @@
+<head>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+
+body {
+	display: flex;
+}
+
+.graph_div {
+	width: 60%;
+	height: 60%;
+	margin: auto;
+
+}
+
+
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+	<div id='graph' class='graph_div'>
+
+	</div>
+
+
+	<button id='anim_butt'>Animate</button>
+	<button id='anim_butt2'>Animate</button>
+	<button id='anim_butt3'>Animate</button>
+
+
+	<script type="text/javascript">
+
+	var d3 = Plotly.d3;
+
+	console.log(d3);
+
+
+	d3.json('plotly_chall_test_dat.json', function(data){
+		console.log(data);
+	})
+
+	var trace1 = {
+		x: [1, 2, 3, 4],
+		y: [10, 40, 90, 160],
+		mode: 'markers'
+	}
+
+	Plotly.newPlot(graph, [trace1])
+
+
+	d3.select('#anim_butt').on('click', function(){
+		Plotly.animate(graph, {
+			data: [{y: [10, 40, 90, 160]}],
+			traces: [0],
+			layout: {}
+		},
+		{
+			transition: {
+				duration: 150,
+				ease: 'linear'
+			}
+		})
+	});
+
+
+
+	d3.select('#anim_butt2').on('click', function(){
+		Plotly.animate(graph, {
+			data: [{y: [80, 80, 80, 80]}],
+			traces: [0],
+			layout: {}
+		},
+		{
+			transition: {
+				duration: 1000,
+				ease: 'linear'
+			}
+		})
+	});
+
+
+	d3.select('#anim_butt3').on('click', function(){
+		Plotly.animate(graph, {
+			data: [{y: [80, 80, 80, 80]}],
+			traces: [0],
+			layout: {}
+		},
+		{
+			frame: {duration: 3000},
+			transition: {
+				duration: 1000,
+				ease: 'linear'
+			}
+		})
+	});
+
+
+
+
+
+
+
+
+
+	</script>
+
+
+
+</body>
